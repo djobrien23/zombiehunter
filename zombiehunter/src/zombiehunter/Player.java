@@ -10,6 +10,8 @@ import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import java.util.ArrayList;
+import java.awt.Rectangle;
 
 public class Player {
     
@@ -40,6 +42,12 @@ public class Player {
     public int leftPlayerImgHeight; //height of player
     public int rightPlayerImgWidth; //width of player
     public int rightPlayerImgHeight; //height of player
+    
+    private ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
+    
+    public static Rectangle rect = new Rectangle(0, 0, 0, 0);
+    
+
     
     
     public Player()
@@ -151,7 +159,19 @@ public class Player {
         	y += acceleratingSpeed;
         if(y >= 514) //bottom border
            y -= acceleratingSpeed;
+           
+       rect.setRect(x + 18, y, 22, 52);
     }
+    
+    public void shoot() 
+    {
+		Projectile p = new Projectile(x, y + 18);
+		projectiles.add(p);
+	}
+   
+   public ArrayList getProjectiles() {
+		return projectiles;
+	}
     
     public void Draw(Graphics2D g2d)
     {
