@@ -84,9 +84,11 @@ public class Game {
     {
         player.Update(); // move the player
         if(Canvas.keyboardKeyState(KeyEvent.VK_SPACE))
-         player.shoot();
+            player.shoot();
          
         zombie.Update(); // move zombie
+        if(collision())
+            Framework.gameState = Framework.GameState.GAMEOVER;
     }
     
     // draw the game to the screen
@@ -116,5 +118,9 @@ public class Game {
         g2d.drawString("Press space or enter to restart.", Framework.frameWidth / 2 - 100, Framework.frameHeight / 3 + 70);
 
     }   
+    
+    private boolean collision() {
+		return zombie.rect2.getBounds().intersects(player.rect.getBounds());
+	}
 	
 }
