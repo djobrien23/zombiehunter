@@ -8,6 +8,8 @@ import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import java.awt.Rectangle;
+
 
 // Zombie
 public class Zombie {
@@ -23,6 +25,8 @@ public class Zombie {
     public int zombieImgWidth; // width of zombie
     
     public int zombieImgHeight; //height of zombie
+    
+    public static Rectangle rect2 = new Rectangle(0, 0, 0, 0);
     
     public Zombie()
     {
@@ -52,10 +56,15 @@ public class Zombie {
         }
     }
     
+    public void Update() //move the zombie
+    {
+      rect2.setRect(x + 18, y, 22, 52);
+    }
     
     public void Draw(Graphics2D g2d)
     {
         g2d.drawImage(zombieImg, x, y, null);
     }
     
-}
+    
+   }
